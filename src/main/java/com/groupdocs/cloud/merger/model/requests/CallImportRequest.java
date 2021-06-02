@@ -1,6 +1,6 @@
 /**
  * --------------------------------------------------------------------------------------------------------------------
- * <copyright company="Aspose Pty Ltd" file="Options.java">
+ * <copyright company="Aspose Pty Ltd" file="CallImportRequest.java">
  *   Copyright (c) 2003-2021 Aspose Pty Ltd
  * </copyright>
  * <summary>
@@ -25,7 +25,7 @@
  * --------------------------------------------------------------------------------------------------------------------
  */
 
-package com.groupdocs.cloud.merger.model;
+package com.groupdocs.cloud.merger.model.requests;
 
 import java.util.Objects;
 import com.google.gson.TypeAdapter;
@@ -33,85 +33,73 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.groupdocs.cloud.merger.model.FileInfo;
+import com.groupdocs.cloud.merger.model.*;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.io.File;
 
 /**
- * Options
+ * Request model for callImport method.
  */
-@ApiModel(description = "Options")
-public class Options {
-  @SerializedName("fileInfo")
-  private FileInfo fileInfo = null;
+public class CallImportRequest {
+    
+    /**
+    * Initializes a new instance of the CallImportRequest class.
+    */      
+    public CallImportRequest()
+    {
+    }
 
-  @SerializedName("outputPath")
-  private String outputPath = null;
+    /**
+    * Initializes a new instance of the CallImportRequest class.    
+    * @param options Import options
+    */
+    public CallImportRequest(ImportOptions options)
+    {
+        this.options = options;
+    }
 
-  public Options fileInfo(FileInfo fileInfo) {
-    this.fileInfo = fileInfo;
-    return this;
-  }
+  @SerializedName("options")
+  private ImportOptions options = null;
 
-   /**
-   * File info
-   * @return fileInfo
+  /**
+   * Import options
+   * @return Import options
   **/
-  @ApiModelProperty(value = "File info")
-  public FileInfo getFileInfo() {
-    return fileInfo;
+  @ApiModelProperty(example = "new ImportOptions()", required = true, value = "Import options")
+  public ImportOptions getoptions() {
+    return options;
   }
 
-  public void setFileInfo(FileInfo fileInfo) {
-    this.fileInfo = fileInfo;
+  public void setoptions(ImportOptions options) {
+    this.options = options;
   }
-
-  public Options outputPath(String outputPath) {
-    this.outputPath = outputPath;
-    return this;
-  }
-
-   /**
-   * The output path.
-   * @return outputPath
-  **/
-  @ApiModelProperty(value = "The output path.")
-  public String getOutputPath() {
-    return outputPath;
-  }
-
-  public void setOutputPath(String outputPath) {
-    this.outputPath = outputPath;
-  }
-
 
   @Override
   public boolean equals(java.lang.Object o) {
     if (this == o) {
       return true;
     }
+
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Options options = (Options) o;
-    return Objects.equals(this.fileInfo, options.fileInfo) &&
-        Objects.equals(this.outputPath, options.outputPath);
+    
+    CallImportRequest request = (CallImportRequest) o;
+    return Objects.equals(this.options, request.options);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(fileInfo, outputPath);
+    return Objects.hash(options);
   }
-
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class Options {\n");
-    
-    sb.append("    fileInfo: ").append(toIndentedString(fileInfo)).append("\n");
-    sb.append("    outputPath: ").append(toIndentedString(outputPath)).append("\n");
+    sb.append("class CallImport {\n");
+    sb.append("    options: ").append(toIndentedString(options)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -126,6 +114,5 @@ public class Options {
     }
     return o.toString().replace("\n", "\n    ");
   }
-
 }
 

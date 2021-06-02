@@ -1,7 +1,7 @@
 /**
  * --------------------------------------------------------------------------------------------------------------------
  * <copyright company="Aspose Pty Ltd">
- *   Copyright (c) 2003-2019 Aspose Pty Ltd
+ *   Copyright (c) 2003-2021 Aspose Pty Ltd
  * </copyright>
  * <summary>
  *  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -49,7 +49,7 @@ public class MergerInfoApiTests extends BaseApiTest {
             infoApi.getInfo(request);
             fail("Expected ApiException was not thrown.");
         } catch (ApiException ex) {
-            assertEquals("Not Found", ex.getMessage());
+            assertEquals("Can't find file located at 'some-folder/NotExist.docx'.", ex.getMessage());
         }  
     }
 

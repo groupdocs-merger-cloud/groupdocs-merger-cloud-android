@@ -1,7 +1,7 @@
 /**
  * --------------------------------------------------------------------------------------------------------------------
  * <copyright company="Aspose Pty Ltd">
- *   Copyright (c) 2003-2019 Aspose Pty Ltd
+ *   Copyright (c) 2003-2021 Aspose Pty Ltd
  * </copyright>
  * <summary>
  *  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -359,6 +359,43 @@ public class MergerApiTests extends BaseApiTest {
         DocumentResult result = documentApi.join(request);
 
         assertEquals(options.getOutputPath(), result.getPath());
+    }   
+    
+    @Test
+    public void TestJoinCrossFormat() throws ApiException
+    {
+        // Arrange
+        JoinItem item1 = new JoinItem();
+        item1.setFileInfo(TestFiles.OnePageProtectedPdf.ToFileInfo());
+        JoinItem item2 = new JoinItem();
+        item2.setFileInfo(TestFiles.FourPagesDocx.ToFileInfo());
+        JoinOptions options = new JoinOptions();        
+        options.setJoinItems(Arrays.asList(item1, item2));
+        options.setOutputPath(DefaultOutputPath + "\\" + "joined.pdf");
+
+        JoinRequest request = new JoinRequest(options);
+
+        // Act & Assert
+        DocumentResult result = documentApi.join(request);
+
+        assertEquals(options.getOutputPath(), result.getPath());
     }    
+
+    @Test
+    public void TestImport() throws ApiException
+    {
+        // Arrange
+        ImportOptions options = new ImportOptions();     
+        options.setFileInfo(TestFiles.OnePageProtectedPdf.ToFileInfo());   
+        options.addAttachmentsItem(TestFiles.Txt.getPath());
+        options.setOutputPath(DefaultOutputPath + "\\" + "with-attachment.pdf");
+
+        CallImportRequest request = new CallImportRequest(options);
+
+        // Act & Assert
+        DocumentResult result = documentApi.callImport(request);
+
+        assertEquals(options.getOutputPath(), result.getPath());
+    }        
 }
 

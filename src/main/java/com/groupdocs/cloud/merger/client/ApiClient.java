@@ -1,7 +1,7 @@
 /**
  * --------------------------------------------------------------------------------------------------------------------
  * <copyright company="Aspose Pty Ltd" file="ApiClient.java">
- *   Copyright (c) 2003-2019 Aspose Pty Ltd
+ *   Copyright (c) 2003-2021 Aspose Pty Ltd
  * </copyright>
  * <summary>
  *  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -97,7 +97,7 @@ public class ApiClient {
         this.json = new JSON();
 
         // Set default User-Agent.
-        setUserAgent("java-sdk/19.10");
+        setUserAgent("java-sdk/21.6");
 
         // Set connection timeout
         setConnectTimeout(configuration.getTimeout());
@@ -868,13 +868,23 @@ public class ApiClient {
                   throw new ApiException(response.message(), response.code());
                 }
     
-                ApiError apiError = null;
+                com.groupdocs.cloud.merger.model.Error Error = null;
                 try {
-                  apiError = json.deserialize(respBody, ApiError.class);
+                  Error = json.deserialize(respBody, com.groupdocs.cloud.merger.model.Error.class);
                 } catch (Exception e) {
                   //NOTE: ignore
                 }
-                if(apiError != null && apiError.getError() != null) {
+               if(Error != null && Error.getCode() != null) {
+                  throw new ApiException(Error.getMessage(), response.code());
+                }   
+
+                com.groupdocs.cloud.merger.model.ApiError apiError = null;
+                try {
+                  apiError = json.deserialize(respBody, com.groupdocs.cloud.merger.model.ApiError.class);
+                } catch (Exception e) {
+                  //NOTE: ignore
+                }
+               if(apiError != null && apiError.getError().getCode() != null) {
                   throw new ApiException(apiError.getError().getMessage(), response.code());
                 }   
                 

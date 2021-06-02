@@ -1,6 +1,6 @@
 /**
  * --------------------------------------------------------------------------------------------------------------------
- * <copyright company="Aspose Pty Ltd" file="Options.java">
+ * <copyright company="Aspose Pty Ltd" file="ImportOptions.java">
  *   Copyright (c) 2003-2021 Aspose Pty Ltd
  * </copyright>
  * <summary>
@@ -34,55 +34,45 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.groupdocs.cloud.merger.model.FileInfo;
+import com.groupdocs.cloud.merger.model.Options;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
- * Options
+ * Import API options
  */
-@ApiModel(description = "Options")
-public class Options {
-  @SerializedName("fileInfo")
-  private FileInfo fileInfo = null;
+@ApiModel(description = "Import API options")
+public class ImportOptions extends Options {
+  @SerializedName("attachments")
+  private List<String> attachments = null;
 
-  @SerializedName("outputPath")
-  private String outputPath = null;
+  public ImportOptions attachments(List<String> attachments) {
+    this.attachments = attachments;
+    return this;
+  }
 
-  public Options fileInfo(FileInfo fileInfo) {
-    this.fileInfo = fileInfo;
+  public ImportOptions addAttachmentsItem(String attachmentsItem) {
+    if (this.attachments == null) {
+      this.attachments = new ArrayList<String>();
+    }
+    this.attachments.add(attachmentsItem);
     return this;
   }
 
    /**
-   * File info
-   * @return fileInfo
+   * List of files paths to import as attachments
+   * @return attachments
   **/
-  @ApiModelProperty(value = "File info")
-  public FileInfo getFileInfo() {
-    return fileInfo;
+  @ApiModelProperty(value = "List of files paths to import as attachments")
+  public List<String> getAttachments() {
+    return attachments;
   }
 
-  public void setFileInfo(FileInfo fileInfo) {
-    this.fileInfo = fileInfo;
-  }
-
-  public Options outputPath(String outputPath) {
-    this.outputPath = outputPath;
-    return this;
-  }
-
-   /**
-   * The output path.
-   * @return outputPath
-  **/
-  @ApiModelProperty(value = "The output path.")
-  public String getOutputPath() {
-    return outputPath;
-  }
-
-  public void setOutputPath(String outputPath) {
-    this.outputPath = outputPath;
+  public void setAttachments(List<String> attachments) {
+    this.attachments = attachments;
   }
 
 
@@ -94,24 +84,23 @@ public class Options {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Options options = (Options) o;
-    return Objects.equals(this.fileInfo, options.fileInfo) &&
-        Objects.equals(this.outputPath, options.outputPath);
+    ImportOptions importOptions = (ImportOptions) o;
+    return Objects.equals(this.attachments, importOptions.attachments) &&
+        super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(fileInfo, outputPath);
+    return Objects.hash(attachments, super.hashCode());
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class Options {\n");
-    
-    sb.append("    fileInfo: ").append(toIndentedString(fileInfo)).append("\n");
-    sb.append("    outputPath: ").append(toIndentedString(outputPath)).append("\n");
+    sb.append("class ImportOptions {\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
+    sb.append("    attachments: ").append(toIndentedString(attachments)).append("\n");
     sb.append("}");
     return sb.toString();
   }

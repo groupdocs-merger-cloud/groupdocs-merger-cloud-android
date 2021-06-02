@@ -4,13 +4,13 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.groupdocs</groupId>
-    <artifactId>groupdocs-merger-cloud</artifactId>
+    <artifactId>groupdocs-merger-cloud-android</artifactId>
     <version>{VERSION}</version>
     <packaging>jar</packaging>
 
-    <name>groupdocs-merger-cloud</name>
+    <name>groupdocs-merger-cloud-android</name>
     <description>Java library for communicating with the GroupDocs.Merger Cloud API</description>
-    <url>https://github.com/groupdocs-merger-cloud/groupdocs-merger-cloud-java</url>
+    <url>https://github.com/groupdocs-merger-cloud/groupdocs-merger-cloud-android</url>
 
     <licenses>
         <license>
