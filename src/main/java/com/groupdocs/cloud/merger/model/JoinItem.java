@@ -1,7 +1,7 @@
 /**
  * --------------------------------------------------------------------------------------------------------------------
  * <copyright company="Aspose Pty Ltd" file="JoinItem.java">
- *   Copyright (c) 2003-2021 Aspose Pty Ltd
+ *   Copyright (c) 2003-2022 Aspose Pty Ltd
  * </copyright>
  * <summary>
  *  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -109,6 +109,56 @@ public class JoinItem {
   @SerializedName("rangeMode")
   private RangeModeEnum rangeMode = null;
 
+  /**
+   * Allows to join word documents without empty space between documents
+   */
+  @JsonAdapter(WordJoinModeEnum.Adapter.class)
+  public enum WordJoinModeEnum {
+    DEFAULT("Default"),
+    
+    CONTINUOUS("Continuous");
+
+    private String value;
+
+    WordJoinModeEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static WordJoinModeEnum fromValue(String text) {
+      for (WordJoinModeEnum b : WordJoinModeEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<WordJoinModeEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final WordJoinModeEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public WordJoinModeEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return WordJoinModeEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
+
+  @SerializedName("wordJoinMode")
+  private WordJoinModeEnum wordJoinMode = null;
+
   public JoinItem fileInfo(FileInfo fileInfo) {
     this.fileInfo = fileInfo;
     return this;
@@ -207,6 +257,24 @@ public class JoinItem {
     this.rangeMode = rangeMode;
   }
 
+  public JoinItem wordJoinMode(WordJoinModeEnum wordJoinMode) {
+    this.wordJoinMode = wordJoinMode;
+    return this;
+  }
+
+   /**
+   * Allows to join word documents without empty space between documents
+   * @return wordJoinMode
+  **/
+  @ApiModelProperty(required = true, value = "Allows to join word documents without empty space between documents")
+  public WordJoinModeEnum getWordJoinMode() {
+    return wordJoinMode;
+  }
+
+  public void setWordJoinMode(WordJoinModeEnum wordJoinMode) {
+    this.wordJoinMode = wordJoinMode;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -221,12 +289,13 @@ public class JoinItem {
         Objects.equals(this.pages, joinItem.pages) &&
         Objects.equals(this.startPageNumber, joinItem.startPageNumber) &&
         Objects.equals(this.endPageNumber, joinItem.endPageNumber) &&
-        Objects.equals(this.rangeMode, joinItem.rangeMode);
+        Objects.equals(this.rangeMode, joinItem.rangeMode) &&
+        Objects.equals(this.wordJoinMode, joinItem.wordJoinMode);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(fileInfo, pages, startPageNumber, endPageNumber, rangeMode);
+    return Objects.hash(fileInfo, pages, startPageNumber, endPageNumber, rangeMode, wordJoinMode);
   }
 
 
@@ -240,6 +309,7 @@ public class JoinItem {
     sb.append("    startPageNumber: ").append(toIndentedString(startPageNumber)).append("\n");
     sb.append("    endPageNumber: ").append(toIndentedString(endPageNumber)).append("\n");
     sb.append("    rangeMode: ").append(toIndentedString(rangeMode)).append("\n");
+    sb.append("    wordJoinMode: ").append(toIndentedString(wordJoinMode)).append("\n");
     sb.append("}");
     return sb.toString();
   }

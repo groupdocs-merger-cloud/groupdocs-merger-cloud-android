@@ -25,7 +25,7 @@ repositories {
 ...
 dependencies {
     ...
-    implementation 'com.groupdocs:groupdocs-merger-cloud:21.12'
+    implementation 'com.groupdocs:groupdocs-merger-cloud:22.5'
 }
 ```
 
