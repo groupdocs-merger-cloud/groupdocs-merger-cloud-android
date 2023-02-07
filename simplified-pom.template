@@ -27,14 +27,6 @@
             <organizationUrl>https://www.groupdocs.cloud</organizationUrl>
         </developer>
     </developers>
-
-    <repositories>
-        <repository>
-            <id>maven.aspose.cloud</id>
-            <name>maven.aspose.cloud</name>
-            <url>https://repository.aspose.cloud/repo/</url>
-        </repository>
-    </repositories>
         
     <dependencies>
         <dependency>

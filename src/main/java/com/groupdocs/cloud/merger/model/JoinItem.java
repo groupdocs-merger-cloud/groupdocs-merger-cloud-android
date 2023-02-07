@@ -1,7 +1,7 @@
 /**
  * --------------------------------------------------------------------------------------------------------------------
  * <copyright company="Aspose Pty Ltd" file="JoinItem.java">
- *   Copyright (c) 2003-2022 Aspose Pty Ltd
+ *   Copyright (c) 2003-2023 Aspose Pty Ltd
  * </copyright>
  * <summary>
  *  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -41,9 +41,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Describes document for join operation
+ * Describes document for join operation.
  */
-@ApiModel(description = "Describes document for join operation")
+@ApiModel(description = "Describes document for join operation.")
 public class JoinItem {
   @SerializedName("fileInfo")
   private FileInfo fileInfo = null;
@@ -110,7 +110,7 @@ public class JoinItem {
   private RangeModeEnum rangeMode = null;
 
   /**
-   * Allows to join word documents without empty space between documents
+   * Allows to join word documents without empty space between documents.
    */
   @JsonAdapter(WordJoinModeEnum.Adapter.class)
   public enum WordJoinModeEnum {
@@ -159,16 +159,66 @@ public class JoinItem {
   @SerializedName("wordJoinMode")
   private WordJoinModeEnum wordJoinMode = null;
 
+  /**
+   * Possible modes for the image joining.
+   */
+  @JsonAdapter(ImageJoinModeEnum.Adapter.class)
+  public enum ImageJoinModeEnum {
+    HORIZONTAL("Horizontal"),
+    
+    VERTICAL("Vertical");
+
+    private String value;
+
+    ImageJoinModeEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static ImageJoinModeEnum fromValue(String text) {
+      for (ImageJoinModeEnum b : ImageJoinModeEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<ImageJoinModeEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final ImageJoinModeEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public ImageJoinModeEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return ImageJoinModeEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
+
+  @SerializedName("imageJoinMode")
+  private ImageJoinModeEnum imageJoinMode = null;
+
   public JoinItem fileInfo(FileInfo fileInfo) {
     this.fileInfo = fileInfo;
     return this;
   }
 
    /**
-   * File info
+   * File info.
    * @return fileInfo
   **/
-  @ApiModelProperty(value = "File info")
+  @ApiModelProperty(value = "File info.")
   public FileInfo getFileInfo() {
     return fileInfo;
   }
@@ -263,16 +313,34 @@ public class JoinItem {
   }
 
    /**
-   * Allows to join word documents without empty space between documents
+   * Allows to join word documents without empty space between documents.
    * @return wordJoinMode
   **/
-  @ApiModelProperty(required = true, value = "Allows to join word documents without empty space between documents")
+  @ApiModelProperty(required = true, value = "Allows to join word documents without empty space between documents.")
   public WordJoinModeEnum getWordJoinMode() {
     return wordJoinMode;
   }
 
   public void setWordJoinMode(WordJoinModeEnum wordJoinMode) {
     this.wordJoinMode = wordJoinMode;
+  }
+
+  public JoinItem imageJoinMode(ImageJoinModeEnum imageJoinMode) {
+    this.imageJoinMode = imageJoinMode;
+    return this;
+  }
+
+   /**
+   * Possible modes for the image joining.
+   * @return imageJoinMode
+  **/
+  @ApiModelProperty(required = true, value = "Possible modes for the image joining.")
+  public ImageJoinModeEnum getImageJoinMode() {
+    return imageJoinMode;
+  }
+
+  public void setImageJoinMode(ImageJoinModeEnum imageJoinMode) {
+    this.imageJoinMode = imageJoinMode;
   }
 
 
@@ -290,12 +358,13 @@ public class JoinItem {
         Objects.equals(this.startPageNumber, joinItem.startPageNumber) &&
         Objects.equals(this.endPageNumber, joinItem.endPageNumber) &&
         Objects.equals(this.rangeMode, joinItem.rangeMode) &&
-        Objects.equals(this.wordJoinMode, joinItem.wordJoinMode);
+        Objects.equals(this.wordJoinMode, joinItem.wordJoinMode) &&
+        Objects.equals(this.imageJoinMode, joinItem.imageJoinMode);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(fileInfo, pages, startPageNumber, endPageNumber, rangeMode, wordJoinMode);
+    return Objects.hash(fileInfo, pages, startPageNumber, endPageNumber, rangeMode, wordJoinMode, imageJoinMode);
   }
 
 
@@ -310,6 +379,7 @@ public class JoinItem {
     sb.append("    endPageNumber: ").append(toIndentedString(endPageNumber)).append("\n");
     sb.append("    rangeMode: ").append(toIndentedString(rangeMode)).append("\n");
     sb.append("    wordJoinMode: ").append(toIndentedString(wordJoinMode)).append("\n");
+    sb.append("    imageJoinMode: ").append(toIndentedString(imageJoinMode)).append("\n");
     sb.append("}");
     return sb.toString();
   }
