@@ -1,7 +1,7 @@
 /**
  * --------------------------------------------------------------------------------------------------------------------
  * <copyright company="Aspose Pty Ltd" file="JoinItem.java">
- *   Copyright (c) 2003-2023 Aspose Pty Ltd
+ *   Copyright (c) 2003-2024 Aspose Pty Ltd
  * </copyright>
  * <summary>
  *  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -158,6 +158,60 @@ public class JoinItem {
 
   @SerializedName("wordJoinMode")
   private WordJoinModeEnum wordJoinMode = null;
+
+  /**
+   * Compliance mode for the Word Ooxml format
+   */
+  @JsonAdapter(WordJoinComplianceEnum.Adapter.class)
+  public enum WordJoinComplianceEnum {
+    ECMA376_2006("Ecma376_2006"),
+    
+    ISO29500_2008_TRANSITIONAL("Iso29500_2008_Transitional"),
+    
+    ISO29500_2008_STRICT("Iso29500_2008_Strict"),
+    
+    AUTO("Auto");
+
+    private String value;
+
+    WordJoinComplianceEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static WordJoinComplianceEnum fromValue(String text) {
+      for (WordJoinComplianceEnum b : WordJoinComplianceEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<WordJoinComplianceEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final WordJoinComplianceEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public WordJoinComplianceEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return WordJoinComplianceEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
+
+  @SerializedName("wordJoinCompliance")
+  private WordJoinComplianceEnum wordJoinCompliance = null;
 
   /**
    * Possible modes for the image joining.
@@ -325,6 +379,24 @@ public class JoinItem {
     this.wordJoinMode = wordJoinMode;
   }
 
+  public JoinItem wordJoinCompliance(WordJoinComplianceEnum wordJoinCompliance) {
+    this.wordJoinCompliance = wordJoinCompliance;
+    return this;
+  }
+
+   /**
+   * Compliance mode for the Word Ooxml format
+   * @return wordJoinCompliance
+  **/
+  @ApiModelProperty(required = true, value = "Compliance mode for the Word Ooxml format")
+  public WordJoinComplianceEnum getWordJoinCompliance() {
+    return wordJoinCompliance;
+  }
+
+  public void setWordJoinCompliance(WordJoinComplianceEnum wordJoinCompliance) {
+    this.wordJoinCompliance = wordJoinCompliance;
+  }
+
   public JoinItem imageJoinMode(ImageJoinModeEnum imageJoinMode) {
     this.imageJoinMode = imageJoinMode;
     return this;
@@ -359,12 +431,13 @@ public class JoinItem {
         Objects.equals(this.endPageNumber, joinItem.endPageNumber) &&
         Objects.equals(this.rangeMode, joinItem.rangeMode) &&
         Objects.equals(this.wordJoinMode, joinItem.wordJoinMode) &&
+        Objects.equals(this.wordJoinCompliance, joinItem.wordJoinCompliance) &&
         Objects.equals(this.imageJoinMode, joinItem.imageJoinMode);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(fileInfo, pages, startPageNumber, endPageNumber, rangeMode, wordJoinMode, imageJoinMode);
+    return Objects.hash(fileInfo, pages, startPageNumber, endPageNumber, rangeMode, wordJoinMode, wordJoinCompliance, imageJoinMode);
   }
 
 
@@ -379,6 +452,7 @@ public class JoinItem {
     sb.append("    endPageNumber: ").append(toIndentedString(endPageNumber)).append("\n");
     sb.append("    rangeMode: ").append(toIndentedString(rangeMode)).append("\n");
     sb.append("    wordJoinMode: ").append(toIndentedString(wordJoinMode)).append("\n");
+    sb.append("    wordJoinCompliance: ").append(toIndentedString(wordJoinCompliance)).append("\n");
     sb.append("    imageJoinMode: ").append(toIndentedString(imageJoinMode)).append("\n");
     sb.append("}");
     return sb.toString();
