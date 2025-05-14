@@ -1,6 +1,6 @@
 /**
  * --------------------------------------------------------------------------------------------------------------------
- * <copyright company="Aspose Pty Ltd" file="FileInfo.java">
+ * <copyright company="Aspose Pty Ltd" file="ApiErrorResponse.java">
  *   Copyright (c) Aspose Pty Ltd
  * </copyright>
  * <summary>
@@ -33,97 +33,55 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import com.groupdocs.cloud.merger.model.ApiError;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * Describes file properties
+ * ApiErrorResponse
  */
-@ApiModel(description = "Describes file properties")
-public class FileInfo {
-  @SerializedName("filePath")
-  private String filePath = null;
+public class ApiErrorResponse {
+  @SerializedName("requestId")
+  private String requestId = null;
 
-  @SerializedName("storageName")
-  private String storageName = null;
+  @SerializedName("error")
+  private ApiError error = null;
 
-  @SerializedName("versionId")
-  private String versionId = null;
-
-  @SerializedName("password")
-  private String password = null;
-
-  public FileInfo filePath(String filePath) {
-    this.filePath = filePath;
+  public ApiErrorResponse requestId(String requestId) {
+    this.requestId = requestId;
     return this;
   }
 
    /**
-   * File path in storage
-   * @return filePath
+   * Get requestId
+   * @return requestId
   **/
-  @ApiModelProperty(value = "File path in storage")
-  public String getFilePath() {
-    return filePath;
+  @ApiModelProperty(value = "")
+  public String getRequestId() {
+    return requestId;
   }
 
-  public void setFilePath(String filePath) {
-    this.filePath = filePath;
+  public void setRequestId(String requestId) {
+    this.requestId = requestId;
   }
 
-  public FileInfo storageName(String storageName) {
-    this.storageName = storageName;
+  public ApiErrorResponse error(ApiError error) {
+    this.error = error;
     return this;
   }
 
    /**
-   * Storage name
-   * @return storageName
+   * Get error
+   * @return error
   **/
-  @ApiModelProperty(value = "Storage name")
-  public String getStorageName() {
-    return storageName;
+  @ApiModelProperty(value = "")
+  public ApiError getError() {
+    return error;
   }
 
-  public void setStorageName(String storageName) {
-    this.storageName = storageName;
-  }
-
-  public FileInfo versionId(String versionId) {
-    this.versionId = versionId;
-    return this;
-  }
-
-   /**
-   * Version ID
-   * @return versionId
-  **/
-  @ApiModelProperty(value = "Version ID")
-  public String getVersionId() {
-    return versionId;
-  }
-
-  public void setVersionId(String versionId) {
-    this.versionId = versionId;
-  }
-
-  public FileInfo password(String password) {
-    this.password = password;
-    return this;
-  }
-
-   /**
-   * Password to open file
-   * @return password
-  **/
-  @ApiModelProperty(value = "Password to open file")
-  public String getPassword() {
-    return password;
-  }
-
-  public void setPassword(String password) {
-    this.password = password;
+  public void setError(ApiError error) {
+    this.error = error;
   }
 
 
@@ -135,28 +93,24 @@ public class FileInfo {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    FileInfo fileInfo = (FileInfo) o;
-    return Objects.equals(this.filePath, fileInfo.filePath) &&
-        Objects.equals(this.storageName, fileInfo.storageName) &&
-        Objects.equals(this.versionId, fileInfo.versionId) &&
-        Objects.equals(this.password, fileInfo.password);
+    ApiErrorResponse apiErrorResponse = (ApiErrorResponse) o;
+    return Objects.equals(this.requestId, apiErrorResponse.requestId) &&
+        Objects.equals(this.error, apiErrorResponse.error);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(filePath, storageName, versionId, password);
+    return Objects.hash(requestId, error);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class FileInfo {\n");
+    sb.append("class ApiErrorResponse {\n");
     
-    sb.append("    filePath: ").append(toIndentedString(filePath)).append("\n");
-    sb.append("    storageName: ").append(toIndentedString(storageName)).append("\n");
-    sb.append("    versionId: ").append(toIndentedString(versionId)).append("\n");
-    sb.append("    password: ").append(toIndentedString(password)).append("\n");
+    sb.append("    requestId: ").append(toIndentedString(requestId)).append("\n");
+    sb.append("    error: ").append(toIndentedString(error)).append("\n");
     sb.append("}");
     return sb.toString();
   }

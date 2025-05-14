@@ -1,6 +1,6 @@
 /**
  * --------------------------------------------------------------------------------------------------------------------
- * <copyright company="Aspose Pty Ltd" file="ApiError.java">
+ * <copyright company="Aspose Pty Ltd" file="MixRequest.java">
  *   Copyright (c) Aspose Pty Ltd
  * </copyright>
  * <summary>
@@ -25,39 +25,55 @@
  * --------------------------------------------------------------------------------------------------------------------
  */
 
-package com.groupdocs.cloud.merger.model;
+package com.groupdocs.cloud.merger.model.requests;
 
 import java.util.Objects;
-
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
-
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import com.groupdocs.cloud.merger.model.*;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import java.io.IOException;
+import java.io.File;
 
 /**
- * Describes API error.
+ * Request model for mix method.
  */
-@ApiModel(description = "Describes API error.")
-public class ApiError {
-  @SerializedName("error")
-  private Error error = null;
+public class MixRequest {
+    
+    /**
+    * Initializes a new instance of the MixRequest class.
+    */      
+    public MixRequest()
+    {
+    }
 
-  public ApiError error(Error error) {
-    this.error = error;
-    return this;
-  }
+    /**
+    * Initializes a new instance of the MixRequest class.    
+    * @param options Mix options
+    */
+    public MixRequest(MixPagesOptions options)
+    {
+        this.options = options;
+    }
+
+  @SerializedName("options")
+  private MixPagesOptions options = null;
 
   /**
-   * The API error.
-   * @return code
+   * Mix options
+   * @return Mix options
   **/
-  @ApiModelProperty(value = "The API error.")
-  public Error getError() {
-    return error;
+  @ApiModelProperty(example = "new MixPagesOptions()", required = true, value = "Mix options")
+  public MixPagesOptions getoptions() {
+    return options;
   }
 
-  public void setError(Error error) {
-    this.error = error;
+  public void setoptions(MixPagesOptions options) {
+    this.options = options;
   }
 
   @Override
@@ -65,25 +81,25 @@ public class ApiError {
     if (this == o) {
       return true;
     }
+
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ApiError error = (ApiError) o;
-    return Objects.equals(this.error, error.error) &&
-        super.equals(o);
+    
+    MixRequest request = (MixRequest) o;
+    return Objects.equals(this.options, request.options);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(error, super.hashCode());
+    return Objects.hash(options);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ApiError {\n");
-    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
-    sb.append("    error: ").append(toIndentedString(error)).append("\n");
+    sb.append("class Mix {\n");
+    sb.append("    options: ").append(toIndentedString(options)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -99,3 +115,4 @@ public class ApiError {
     return o.toString().replace("\n", "\n    ");
   }
 }
+

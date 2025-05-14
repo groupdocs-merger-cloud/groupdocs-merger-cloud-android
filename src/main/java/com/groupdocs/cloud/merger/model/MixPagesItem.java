@@ -1,6 +1,6 @@
 /**
  * --------------------------------------------------------------------------------------------------------------------
- * <copyright company="Aspose Pty Ltd" file="InfoResult.java">
+ * <copyright company="Aspose Pty Ltd" file="MixPagesItem.java">
  *   Copyright (c) Aspose Pty Ltd
  * </copyright>
  * <summary>
@@ -33,7 +33,6 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.groupdocs.cloud.merger.model.PageInfo;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
@@ -41,100 +40,58 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Describes document properties result
+ * Defines item options for documents MixPages method
  */
-@ApiModel(description = "Describes document properties result")
-public class InfoResult {
-  @SerializedName("extension")
-  private String extension = null;
+@ApiModel(description = "Defines item options for documents MixPages method")
+public class MixPagesItem {
+  @SerializedName("fileIndex")
+  private Integer fileIndex = null;
 
   @SerializedName("pages")
-  private List<PageInfo> pages = null;
+  private List<Integer> pages = null;
 
-  @SerializedName("size")
-  private Long size = null;
-
-  @SerializedName("fileFormat")
-  private String fileFormat = null;
-
-  public InfoResult extension(String extension) {
-    this.extension = extension;
+  public MixPagesItem fileIndex(Integer fileIndex) {
+    this.fileIndex = fileIndex;
     return this;
   }
 
    /**
-   * Document extension
-   * @return extension
+   * Index of the file from MixPagesOptions.Files collection.
+   * @return fileIndex
   **/
-  @ApiModelProperty(value = "Document extension")
-  public String getExtension() {
-    return extension;
+  @ApiModelProperty(required = true, value = "Index of the file from MixPagesOptions.Files collection.")
+  public Integer getFileIndex() {
+    return fileIndex;
   }
 
-  public void setExtension(String extension) {
-    this.extension = extension;
+  public void setFileIndex(Integer fileIndex) {
+    this.fileIndex = fileIndex;
   }
 
-  public InfoResult pages(List<PageInfo> pages) {
+  public MixPagesItem pages(List<Integer> pages) {
     this.pages = pages;
     return this;
   }
 
-  public InfoResult addPagesItem(PageInfo pagesItem) {
+  public MixPagesItem addPagesItem(Integer pagesItem) {
     if (this.pages == null) {
-      this.pages = new ArrayList<PageInfo>();
+      this.pages = new ArrayList<Integer>();
     }
     this.pages.add(pagesItem);
     return this;
   }
 
    /**
-   * Collection page descriptors
+   * List of page numbers to use in a MixPages operation. NOTE: page numbering starts from 1.
    * @return pages
   **/
-  @ApiModelProperty(value = "Collection page descriptors")
-  public List<PageInfo> getPages() {
+  @ApiModelProperty(value = "List of page numbers to use in a MixPages operation. NOTE: page numbering starts from 1.")
+  public List<Integer> getPages() {
     return pages;
   }
 
-  public void setPages(List<PageInfo> pages) {
+  public void setPages(List<Integer> pages) {
     this.pages = pages;
-  }
-
-  public InfoResult size(Long size) {
-    this.size = size;
-    return this;
-  }
-
-   /**
-   * Document size in bytes
-   * @return size
-  **/
-  @ApiModelProperty(required = true, value = "Document size in bytes")
-  public Long getSize() {
-    return size;
-  }
-
-  public void setSize(Long size) {
-    this.size = size;
-  }
-
-  public InfoResult fileFormat(String fileFormat) {
-    this.fileFormat = fileFormat;
-    return this;
-  }
-
-   /**
-   * File format
-   * @return fileFormat
-  **/
-  @ApiModelProperty(value = "File format")
-  public String getFileFormat() {
-    return fileFormat;
-  }
-
-  public void setFileFormat(String fileFormat) {
-    this.fileFormat = fileFormat;
   }
 
 
@@ -146,28 +103,24 @@ public class InfoResult {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    InfoResult infoResult = (InfoResult) o;
-    return Objects.equals(this.extension, infoResult.extension) &&
-        Objects.equals(this.pages, infoResult.pages) &&
-        Objects.equals(this.size, infoResult.size) &&
-        Objects.equals(this.fileFormat, infoResult.fileFormat);
+    MixPagesItem mixPagesItem = (MixPagesItem) o;
+    return Objects.equals(this.fileIndex, mixPagesItem.fileIndex) &&
+        Objects.equals(this.pages, mixPagesItem.pages);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(extension, pages, size, fileFormat);
+    return Objects.hash(fileIndex, pages);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class InfoResult {\n");
+    sb.append("class MixPagesItem {\n");
     
-    sb.append("    extension: ").append(toIndentedString(extension)).append("\n");
+    sb.append("    fileIndex: ").append(toIndentedString(fileIndex)).append("\n");
     sb.append("    pages: ").append(toIndentedString(pages)).append("\n");
-    sb.append("    size: ").append(toIndentedString(size)).append("\n");
-    sb.append("    fileFormat: ").append(toIndentedString(fileFormat)).append("\n");
     sb.append("}");
     return sb.toString();
   }

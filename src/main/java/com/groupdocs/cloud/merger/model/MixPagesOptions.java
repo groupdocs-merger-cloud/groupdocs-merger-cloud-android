@@ -1,6 +1,6 @@
 /**
  * --------------------------------------------------------------------------------------------------------------------
- * <copyright company="Aspose Pty Ltd" file="JoinItem.java">
+ * <copyright company="Aspose Pty Ltd" file="MixPagesOptions.java">
  *   Copyright (c) Aspose Pty Ltd
  * </copyright>
  * <summary>
@@ -34,6 +34,7 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.groupdocs.cloud.merger.model.FileInfo;
+import com.groupdocs.cloud.merger.model.MixPagesItem;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
@@ -41,73 +42,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Describes document for join operation.
+ * Defines options for documents JoinPages method
  */
-@ApiModel(description = "Describes document for join operation.")
-public class JoinItem {
-  @SerializedName("fileInfo")
-  private FileInfo fileInfo = null;
+@ApiModel(description = "Defines options for documents JoinPages method")
+public class MixPagesOptions {
+  @SerializedName("files")
+  private List<FileInfo> files = null;
 
-  @SerializedName("pages")
-  private List<Integer> pages = null;
+  @SerializedName("filesPages")
+  private List<MixPagesItem> filesPages = null;
 
-  @SerializedName("startPageNumber")
-  private Integer startPageNumber = null;
-
-  @SerializedName("endPageNumber")
-  private Integer endPageNumber = null;
-
-  /**
-   * Range mode. Ignored if Pages collection is not empty. Default value is AllPages.
-   */
-  @JsonAdapter(RangeModeEnum.Adapter.class)
-  public enum RangeModeEnum {
-    ALLPAGES("AllPages"),
-    
-    ODDPAGES("OddPages"),
-    
-    EVENPAGES("EvenPages");
-
-    private String value;
-
-    RangeModeEnum(String value) {
-      this.value = value;
-    }
-
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    public static RangeModeEnum fromValue(String text) {
-      for (RangeModeEnum b : RangeModeEnum.values()) {
-        if (String.valueOf(b.value).equals(text)) {
-          return b;
-        }
-      }
-      return null;
-    }
-
-    public static class Adapter extends TypeAdapter<RangeModeEnum> {
-      @Override
-      public void write(final JsonWriter jsonWriter, final RangeModeEnum enumeration) throws IOException {
-        jsonWriter.value(enumeration.getValue());
-      }
-
-      @Override
-      public RangeModeEnum read(final JsonReader jsonReader) throws IOException {
-        String value = jsonReader.nextString();
-        return RangeModeEnum.fromValue(String.valueOf(value));
-      }
-    }
-  }
-
-  @SerializedName("rangeMode")
-  private RangeModeEnum rangeMode = null;
+  @SerializedName("outputPath")
+  private String outputPath = null;
 
   /**
    * Allows to join word documents without empty space between documents.
@@ -263,105 +209,77 @@ public class JoinItem {
   @SerializedName("imageJoinMode")
   private ImageJoinModeEnum imageJoinMode = null;
 
-  public JoinItem fileInfo(FileInfo fileInfo) {
-    this.fileInfo = fileInfo;
+  public MixPagesOptions files(List<FileInfo> files) {
+    this.files = files;
     return this;
   }
 
-   /**
-   * File info.
-   * @return fileInfo
-  **/
-  @ApiModelProperty(value = "File info.")
-  public FileInfo getFileInfo() {
-    return fileInfo;
-  }
-
-  public void setFileInfo(FileInfo fileInfo) {
-    this.fileInfo = fileInfo;
-  }
-
-  public JoinItem pages(List<Integer> pages) {
-    this.pages = pages;
-    return this;
-  }
-
-  public JoinItem addPagesItem(Integer pagesItem) {
-    if (this.pages == null) {
-      this.pages = new ArrayList<Integer>();
+  public MixPagesOptions addFilesItem(FileInfo filesItem) {
+    if (this.files == null) {
+      this.files = new ArrayList<FileInfo>();
     }
-    this.pages.add(pagesItem);
+    this.files.add(filesItem);
     return this;
   }
 
    /**
-   * List of page numbers to use in a Join operation. NOTE: page numbering starts from 1.
-   * @return pages
+   * Source documents for JoinPages operation
+   * @return files
   **/
-  @ApiModelProperty(value = "List of page numbers to use in a Join operation. NOTE: page numbering starts from 1.")
-  public List<Integer> getPages() {
-    return pages;
+  @ApiModelProperty(value = "Source documents for JoinPages operation")
+  public List<FileInfo> getFiles() {
+    return files;
   }
 
-  public void setPages(List<Integer> pages) {
-    this.pages = pages;
+  public void setFiles(List<FileInfo> files) {
+    this.files = files;
   }
 
-  public JoinItem startPageNumber(Integer startPageNumber) {
-    this.startPageNumber = startPageNumber;
+  public MixPagesOptions filesPages(List<MixPagesItem> filesPages) {
+    this.filesPages = filesPages;
+    return this;
+  }
+
+  public MixPagesOptions addFilesPagesItem(MixPagesItem filesPagesItem) {
+    if (this.filesPages == null) {
+      this.filesPages = new ArrayList<MixPagesItem>();
+    }
+    this.filesPages.add(filesPagesItem);
     return this;
   }
 
    /**
-   * Start page number. Ignored if Pages collection is not empty.
-   * @return startPageNumber
+   * Page numbers for document indicies in Files collection.
+   * @return filesPages
   **/
-  @ApiModelProperty(required = true, value = "Start page number. Ignored if Pages collection is not empty.")
-  public Integer getStartPageNumber() {
-    return startPageNumber;
+  @ApiModelProperty(value = "Page numbers for document indicies in Files collection.")
+  public List<MixPagesItem> getFilesPages() {
+    return filesPages;
   }
 
-  public void setStartPageNumber(Integer startPageNumber) {
-    this.startPageNumber = startPageNumber;
+  public void setFilesPages(List<MixPagesItem> filesPages) {
+    this.filesPages = filesPages;
   }
 
-  public JoinItem endPageNumber(Integer endPageNumber) {
-    this.endPageNumber = endPageNumber;
+  public MixPagesOptions outputPath(String outputPath) {
+    this.outputPath = outputPath;
     return this;
   }
 
    /**
-   * End page number. Ignored if Pages collection is not empty.
-   * @return endPageNumber
+   * The output path
+   * @return outputPath
   **/
-  @ApiModelProperty(required = true, value = "End page number. Ignored if Pages collection is not empty.")
-  public Integer getEndPageNumber() {
-    return endPageNumber;
+  @ApiModelProperty(value = "The output path")
+  public String getOutputPath() {
+    return outputPath;
   }
 
-  public void setEndPageNumber(Integer endPageNumber) {
-    this.endPageNumber = endPageNumber;
+  public void setOutputPath(String outputPath) {
+    this.outputPath = outputPath;
   }
 
-  public JoinItem rangeMode(RangeModeEnum rangeMode) {
-    this.rangeMode = rangeMode;
-    return this;
-  }
-
-   /**
-   * Range mode. Ignored if Pages collection is not empty. Default value is AllPages.
-   * @return rangeMode
-  **/
-  @ApiModelProperty(required = true, value = "Range mode. Ignored if Pages collection is not empty. Default value is AllPages.")
-  public RangeModeEnum getRangeMode() {
-    return rangeMode;
-  }
-
-  public void setRangeMode(RangeModeEnum rangeMode) {
-    this.rangeMode = rangeMode;
-  }
-
-  public JoinItem wordJoinMode(WordJoinModeEnum wordJoinMode) {
+  public MixPagesOptions wordJoinMode(WordJoinModeEnum wordJoinMode) {
     this.wordJoinMode = wordJoinMode;
     return this;
   }
@@ -379,7 +297,7 @@ public class JoinItem {
     this.wordJoinMode = wordJoinMode;
   }
 
-  public JoinItem wordJoinCompliance(WordJoinComplianceEnum wordJoinCompliance) {
+  public MixPagesOptions wordJoinCompliance(WordJoinComplianceEnum wordJoinCompliance) {
     this.wordJoinCompliance = wordJoinCompliance;
     return this;
   }
@@ -397,7 +315,7 @@ public class JoinItem {
     this.wordJoinCompliance = wordJoinCompliance;
   }
 
-  public JoinItem imageJoinMode(ImageJoinModeEnum imageJoinMode) {
+  public MixPagesOptions imageJoinMode(ImageJoinModeEnum imageJoinMode) {
     this.imageJoinMode = imageJoinMode;
     return this;
   }
@@ -424,33 +342,29 @@ public class JoinItem {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    JoinItem joinItem = (JoinItem) o;
-    return Objects.equals(this.fileInfo, joinItem.fileInfo) &&
-        Objects.equals(this.pages, joinItem.pages) &&
-        Objects.equals(this.startPageNumber, joinItem.startPageNumber) &&
-        Objects.equals(this.endPageNumber, joinItem.endPageNumber) &&
-        Objects.equals(this.rangeMode, joinItem.rangeMode) &&
-        Objects.equals(this.wordJoinMode, joinItem.wordJoinMode) &&
-        Objects.equals(this.wordJoinCompliance, joinItem.wordJoinCompliance) &&
-        Objects.equals(this.imageJoinMode, joinItem.imageJoinMode);
+    MixPagesOptions mixPagesOptions = (MixPagesOptions) o;
+    return Objects.equals(this.files, mixPagesOptions.files) &&
+        Objects.equals(this.filesPages, mixPagesOptions.filesPages) &&
+        Objects.equals(this.outputPath, mixPagesOptions.outputPath) &&
+        Objects.equals(this.wordJoinMode, mixPagesOptions.wordJoinMode) &&
+        Objects.equals(this.wordJoinCompliance, mixPagesOptions.wordJoinCompliance) &&
+        Objects.equals(this.imageJoinMode, mixPagesOptions.imageJoinMode);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(fileInfo, pages, startPageNumber, endPageNumber, rangeMode, wordJoinMode, wordJoinCompliance, imageJoinMode);
+    return Objects.hash(files, filesPages, outputPath, wordJoinMode, wordJoinCompliance, imageJoinMode);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class JoinItem {\n");
+    sb.append("class MixPagesOptions {\n");
     
-    sb.append("    fileInfo: ").append(toIndentedString(fileInfo)).append("\n");
-    sb.append("    pages: ").append(toIndentedString(pages)).append("\n");
-    sb.append("    startPageNumber: ").append(toIndentedString(startPageNumber)).append("\n");
-    sb.append("    endPageNumber: ").append(toIndentedString(endPageNumber)).append("\n");
-    sb.append("    rangeMode: ").append(toIndentedString(rangeMode)).append("\n");
+    sb.append("    files: ").append(toIndentedString(files)).append("\n");
+    sb.append("    filesPages: ").append(toIndentedString(filesPages)).append("\n");
+    sb.append("    outputPath: ").append(toIndentedString(outputPath)).append("\n");
     sb.append("    wordJoinMode: ").append(toIndentedString(wordJoinMode)).append("\n");
     sb.append("    wordJoinCompliance: ").append(toIndentedString(wordJoinCompliance)).append("\n");
     sb.append("    imageJoinMode: ").append(toIndentedString(imageJoinMode)).append("\n");
