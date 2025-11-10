@@ -31,15 +31,15 @@ import java.util.ArrayList;
 
 public class TestFiles {
     
-    public static TestFile OnePageDocx = new TestFile("one-page.docx", "words\\");
+    public static TestFile OnePageDocx = new TestFile("one-page.docx", "words/");
     public static TestFile NotExist = new TestFile("NotExist.docx", "some-folder/");
-    public static TestFile PasswordProtectedDocx = new TestFile("password-protected.docx", "words\\");
-    public static TestFile FourPagesDocx = new TestFile("four-pages.docx", "words\\");    
-    public static TestFile TenPagesPdf = new TestFile("ten-pages.pdf", "pdf\\");
-    public static TestFile OnePageProtectedPdf = new TestFile("one-page-password.pdf", "pdf\\");
-    public static TestFile FourSheetsXlsx = new TestFile("four-sheets.xlsx","cells\\");
-    public static TestFile FourSheetsProtectedXlsx = new TestFile("four-sheets-protected.xlsx", "cells\\");
-    public static TestFile Txt = new TestFile("document.txt", "txt\\");
+    public static TestFile PasswordProtectedDocx = new TestFile("password-protected.docx", "words/");
+    public static TestFile FourPagesDocx = new TestFile("four-pages.docx", "words/");    
+    public static TestFile TenPagesPdf = new TestFile("ten-pages.pdf", "pdf/");
+    public static TestFile OnePageProtectedPdf = new TestFile("one-page-password.pdf", "pdf/");
+    public static TestFile FourSheetsXlsx = new TestFile("four-sheets.xlsx","cells/");
+    public static TestFile FourSheetsProtectedXlsx = new TestFile("four-sheets-protected.xlsx", "cells/");
+    public static TestFile Txt = new TestFile("document.txt", "txt/");
 
     static {
         PasswordProtectedDocx.setPassword("password");
